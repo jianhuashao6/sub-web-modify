@@ -1,10 +1,14 @@
+
 var colors = new Array(
-  [62,35,255],
+[62,35,255],
   [60,255,60],
   [255,35,98],
   [45,175,230],
   [255,0,255],
   [255,128,0]);
+
+
+//  
 
 var step = 0;
 //color table indices for: 
@@ -15,7 +19,7 @@ var step = 0;
 var colorIndices = [0,1,2,3];
 
 //transition speed
-var gradientSpeed = 0.002;
+var gradientSpeed = 0.001;
 
 function updateGradient()
 {
@@ -38,7 +42,7 @@ var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
 var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
 var color2 = "rgb("+r2+","+g2+","+b2+")";
 
- $('#gradient').css({
+ $('.gradient').css({
    background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
     background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
   
