@@ -33,7 +33,6 @@
                   v-model="form.customBackend"
                   allow-create
                   filterable
-                  @change="selectChanged"
                   placeholder="可输入自己的后端"
                   style="width: 100%"
                 >
@@ -47,7 +46,6 @@
                   v-model="form.shortType" 
                   allow-create
                   filterable
-                  @change="selectChanged2"
                   placeholder="可输入其他可用短链API"
                   style="width: 100%"
                 >
@@ -212,7 +210,7 @@
                   type="warning"
                   icon="el-icon-video-play"
                   @click="gotovideo"
-                >保姆级视频教程</el-button>
+                >视频教程</el-button>
               </el-form-item>
               <el-form-item label-width="0px" style="text-align: center">
 				<el-button
@@ -264,6 +262,7 @@
     </el-dialog>
   </div>
 </template>
+
 <script>
 const project = process.env.VUE_APP_PROJECT
 const remoteConfigSample = process.env.VUE_APP_SUBCONVERTER_REMOTE_CONFIG
@@ -308,28 +307,13 @@ export default {
           "自动判断客户端": "auto",
         },
         shortTypes: {
-          "v1.mk":"https://v1.mk/short",
-          "d1.mk":"https://d1.mk/short",
-          "dlj.tf":"https://dlj.tf/short",
-          "suo.yt":"https://suo.yt/short",
-          "sub.cm":"https://sub.cm/short", 
-          "nfdy.top":"https://nfdy.top/short",
+         "nn01.ml":"https://nn01.ml/short",
         },
         customBackend: {
-          "肥羊增强型后端【vless+负载均衡】":"https://api.v1.mk/sub?",
-          "品云提供后端【实验性】":"https://v.id9.cc/sub?",
-          "nameless13提供":"https://www.nameless13.com/sub?",
-          "subconverter作者提供":"https://sub.xeton.dev/sub?",
-          "sub-web作者提供": "https://api.wcc.best/sub?",
-          "sub作者&lhie1提供": "https://api.dler.io/sub?",
+          "SubConverter增强型后端":"https://api.aa01.ml/sub?",
         },
         backendOptions: [
-          { value: "https://api.v1.mk/sub?" },
-          { value: "https://v.id9.cc/sub?" },
-          { value: "https://www.nameless13.com/sub?" },
-          { value: "https://sub.xeton.dev/sub?" },
-          { value: "https://api.wcc.best/sub?" },
-          { value: "https://api.dler.io/sub?" },
+          { value: "https://api.aa01.ml/sub?" },
         ],
         remoteConfig: [
           {
@@ -337,15 +321,15 @@ export default {
             options: [
               {
                 label: "默认",
-                value: "https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/Area_Media_NoAuto.ini"
-              },
-              {
-                label: "默认（自动测速）",
                 value: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini"
               },
               {
-                label: "默认（索尼电视专用）",
-                value: "https://raw.githubusercontent.com/youshandefeiyang/webcdn/main/SONY.ini"
+                label: "默认（全分组 重度用户使用）",
+                value: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
+              },
+              {
+                label: "默认（全分组 重度用户使用 更多去广告）",
+                value: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini"
               },
               {
                 label: "默认（附带用于 Clash 的 AdGuard DNS）",
@@ -703,9 +687,9 @@ export default {
       form: {
         sourceSubUrl: "",
         clientType: "",
-        customBackend: "https://api.v1.mk/sub?",
-        shortType: "https://v1.mk/short",
-        remoteConfig: "https://raw.githubusercontent.com/Meilieage/webcdn/main/rule/Area_Media_NoAuto.ini",
+        customBackend: "https://api.aa01.ml/sub?",
+        shortType: "https://nn01.ml/short",
+        remoteConfig: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini",
         excludeRemarks: "",
         includeRemarks: "",
         filename: "",
@@ -750,7 +734,7 @@ export default {
     this.isPC = this.$getOS().isPc;
   },
   mounted() {
-    this.tanchuang();
+    this.notify();
     this.form.clientType = "clash";
     this.getBackendVersion();
     this.anhei();
@@ -767,14 +751,6 @@ export default {
     } //监听系统主题，自动切换！
   },
   methods: {
-    selectChanged() {
-      this.getBackendVersion();
-    },
-    selectChanged2() {
-      if (this.form.shortType.indexOf("nfdy.top") !== -1 ) {
-        this.$message.success("该短链接为隐藏福利！")
-      }
-    },
     anhei() {
       const getLocalTheme = window.localStorage.getItem("localTheme");
       const lightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)'); 
@@ -808,11 +784,15 @@ export default {
       window.localStorage.setItem('localTheme','light-mode');
       }
     },
-    tanchuang() {
-      this.$alert('可以在后端地址栏手动选择官方原版订阅转换！', '温馨提示', {
-        confirmButtonText: '确定',
+    notify() {
+      this.$notify({
+        title: "温馨提示",
         type: "warning",
-        customClass: 'msgbox'
+        position: 'top-left',
+        customClass: 'msgbox',
+        message: (
+          "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务！"
+        )
       });
     },
     onCopy() {
@@ -865,7 +845,7 @@ export default {
       window.open(url + this.customSubUrl);
     },
     gotovideo() {
-    this.$alert("别忘了关注友善的肥羊哦！",{
+    this.$alert("我是谁我在哪里",{
 	type: "warning",
 	confirmButtonText: '确定',
 	customClass: 'msgbox',
@@ -1065,17 +1045,11 @@ export default {
     getBackendVersion() {
       this.$axios
         .get(
-          this.form.customBackend.substring(0, this.form.customBackend.length - 5) + "/version"
+          defaultBackend.substring(0, defaultBackend.length - 5) + "/version"
         )
         .then(res => {
           this.backendVersion = res.data.replace(/backend\n$/gm, "");
-          this.backendVersion = this.backendVersion.replace("subconverter", "SubConverter");
-          let a = this.form.customBackend.indexOf("api.v1.mk") !== -1 ;
-          let b = this.form.customBackend.indexOf("v.id9.cc") !== -1 ;
-          a ? this.$message.success(`${this.backendVersion}` + "肥羊负载均衡加强后端支持vless+trojan xtls订阅转换") : b ? this.$message.success(`${this.backendVersion}` + "品云实验性后端支持vless+trojan xtls订阅转换") : this.$message.success(`${this.backendVersion}` + "官方原版后端不支持vless/trojan xtls订阅转换");
-        })
-        .catch(() => {
-          this.$message.error("请求SubConverter版本号返回数据失败，该后端不可用！");
+          this.backendVersion = this.backendVersion.replace("subconverter", "");
         });
     }
   }
