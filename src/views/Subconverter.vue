@@ -218,7 +218,7 @@
                   type="success"
                   icon="el-icon-download"
                   @click="cldown"
-                >Clash For Android 客户端</el-button>
+                >Sub-web 原版</el-button>
               </el-form-item>
             </el-form>
           </el-container>
@@ -860,7 +860,7 @@ export default {
         this.$message.error("订阅链接与客户端为必填项");
         return false;
       }
-      if (this.form.sourceSubUrl.indexOf("losadhwse") !== -1 && (this.form.customBackend.indexOf("api.wcc.best") !== -1)) {
+      if (this.form.sourceSubUrl.indexOf("losadhwse") !== -1 && (this.form.customBackend.indexOf("xxx.xxx.xxx") !== -1)) {
         this.$alert("薯条已将该后端屏蔽，请更换其他后端进行转换！",{
         type: "warning",
         confirmButtonText: '确定',
