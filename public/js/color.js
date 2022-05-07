@@ -16,7 +16,7 @@ var step = 0;
 // next color left
 // current color right
 // next color right
-var colorIndices = [0,1,2,3];
+var colorIndices = [3,4,3,0];
 
 //transition speed
 var gradientSpeed = 0.002;
