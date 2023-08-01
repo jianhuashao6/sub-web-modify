@@ -307,13 +307,13 @@ export default {
           "自动判断客户端": "auto",
         },
         shortTypes: {
-         "nn01.ml":"https://nn01.ml/short",
+         "789900.xyz":"https://789900.xyz/short",
         },
         customBackend: {
-          "SubConverter增强型后端":"https://api.aa01.ml/sub?",
+          "SubConverter增强型后端":"https://api.789900.xyz/sub?",
         },
         backendOptions: [
-          { value: "https://api.aa01.ml/sub?" },
+          { value: "https://api.789900.xyz/sub?" },
         ],
         remoteConfig: [
           {
@@ -687,8 +687,8 @@ export default {
       form: {
         sourceSubUrl: "",
         clientType: "",
-        customBackend: "https://api.aa01.ml/sub?",
-        shortType: "https://nn01.ml/short",
+        customBackend: "https://api.789900.xyz/sub?",
+        shortType: "https://789900.xyz/short",
         remoteConfig: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini",
         excludeRemarks: "",
         includeRemarks: "",
