@@ -307,7 +307,7 @@ export default {
           "自动判断客户端": "auto",
         },
         shortTypes: {
-         "789900.xyz":"https://789900.xyz/short",
+         "789900.xyz": "https://789900.xyz/short",
         },
         customBackend: {
           "SubConverter增强型后端":"https://api.789900.xyz/sub?",
