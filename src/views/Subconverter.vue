@@ -310,7 +310,7 @@ export default {
          "789900.xyz": "https://789900.xyz/short",
         },
         customBackend: {
-          "SubConverter增强型后端":"https://api.789900.xyz/sub?",
+          "SubConverter增强型后端（支持VLESS）":"https://api.789900.xyz/sub?",
         },
         backendOptions: [
           { value: "https://api.789900.xyz/sub?" },
