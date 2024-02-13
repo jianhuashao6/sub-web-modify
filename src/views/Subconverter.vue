@@ -310,7 +310,7 @@ export default {
          "789900.xyz": "https://789900.xyz/short",
         },
         customBackend: {
-          "SubConverter增强型后端（支持VLESS）":"https://api.789900.xyz/sub?",
+          "增强型后端【vless reality+hy1+hy2】":"https://api.789900.xyz/sub?",
         },
         backendOptions: [
           { value: "https://api.789900.xyz/sub?" },
